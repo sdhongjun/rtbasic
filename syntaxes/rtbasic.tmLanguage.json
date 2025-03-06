@@ -3,27 +3,211 @@
 	"name": "RtBasic",
 	"patterns": [
 		{
-			"include": "#keywords"
+			"match": "\\n",
+			"name": "meta.ending-space"
 		},
 		{
-			"include": "#strings"
+			"include": "#round-brackets"
+		},
+		{
+			"begin": "^(?=\\t)",
+			"end": "(?=[^\\t])",
+			"name": "meta.leading-space",
+			"patterns": [
+				{
+					"captures": {
+						"1": {
+							"name": "meta.odd-tab.tabs"
+						},
+						"2": {
+							"name": "meta.even-tab.tabs"
+						}
+					},
+					"match": "(\\t)(\\t)?"
+				}
+			]
+		},
+		{
+			"begin": "^(?= )",
+			"end": "(?=[^ ])",
+			"name": "meta.leading-space",
+			"patterns": [
+				{
+					"captures": {
+						"1": {
+							"name": "meta.odd-tab.spaces"
+						},
+						"2": {
+							"name": "meta.even-tab.spaces"
+						}
+					},
+					"match": "(  )(  )?"
+				}
+			]
+		},
+		{
+			"captures": {
+				"1": {
+					"name": "storage.type.function.asp"
+				},
+				"2": {
+					"name": "entity.name.function.asp"
+				},
+				"3": {
+					"name": "punctuation.definition.parameters.asp"
+				},
+				"4": {
+					"name": "variable.parameter.function.asp"
+				},
+				"5": {
+					"name": "punctuation.definition.parameters.asp"
+				}
+			},
+			"match": "^\\s*((?:global\\s+)?(?i:sub))\\s+([a-zA-Z_]\\w*)\\s*(\\()([^)]*)(\\)).*\\n?",
+			"name": "meta.function.asp"
+		},
+		{
+			"begin": "(^[ \\t]+)?(?=')",
+			"beginCaptures": {
+				"1": {
+					"name": "punctuation.whitespace.comment.leading.asp"
+				}
+			},
+			"end": "(?!\\G)",
+			"patterns": [
+				{
+					"begin": "'",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.comment.asp"
+						}
+					},
+					"end": "\\n",
+					"name": "comment.line.apostrophe.asp"
+				}
+			]
+		},
+		{
+			"match": "(?i:\\b(If|Then|Else|ElseIf|Else If|End If|While|Wend|For|To|Return|Continue|Until|Loop|Next|Exit For|Exit Sub|IIf)\\b)",
+			"name": "keyword.control.asp"
+		},
+		{
+			"match": "(?i:\\b(Mod|And|Not|Or|Xor|as)\\b)",
+			"name": "keyword.operator.asp"
+		},
+		{
+			"captures": {
+				"1": {
+					"name": "storage.type.asp"
+				},
+				"2": {
+					"name": "variable.other.bfeac.asp"
+				},
+				"3": {
+					"name": "meta.separator.comma.asp"
+				}
+			},
+			"match": "(?i:(dim)\\s*(?:(\\b[a-zA-Z_x7f-xff][a-zA-Z0-9_x7f-xff]*?\\b)\\s*(,?)))",
+			"name": "variable.other.dim.asp"
+		},
+		{
+			"match": "(?i:\\s*\\b(Const|Dim|Sub|Global Sub|End Sub)\\b\\s*)",
+			"name": "storage.type.asp"
+		},
+		{
+			"match": "(?i:\\b(Local|Global)\\b)",
+			"name": "storage.modifier.asp"
+		},
+		{
+			"match": "(?i:\\s*\\b(On|Off|False|True)\\b)",
+			"name": "constant.language.asp"
+		},
+		{
+			"begin": "\"",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.definition.string.begin.asp"
+				}
+			},
+			"end": "\"",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.string.end.asp"
+				}
+			},
+			"name": "string.quoted.double.asp",
+			"patterns": [
+				{
+					"match": "\"\"",
+					"name": "constant.character.escape.apostrophe.asp"
+				}
+			]
+		},
+		{
+			"captures": {
+				"1": {
+					"name": "punctuation.definition.variable.asp"
+				}
+			},
+			"match": "(\\$)[a-zA-Z_x7f-xff][a-zA-Z0-9_x7f-xff]*?\\b\\s*",
+			"name": "variable.other.asp"
+		},
+		{
+			"match": "(?i:\\b(In|Op|AIn|AOut|Flash_Read|Flash_Write|End|In_Scan|In_Event|In_Buff|VMove|Move|MoveAbs|Vr|Table|Timer_Start|RunTask)\\b)",
+			"name": "support.function.asp"
+		},
+		{
+			"match": "(?i:\\b(OnTime\\d|OnPowerOff)\\b)",
+			"name": "support.function.event.asp"
+		},
+		{
+			"match": "(?i:(?<=as )(\\b[a-zA-Z_x7f-xff][a-zA-Z0-9_x7f-xff]*?\\b))",
+			"name": "support.type.vb.asp"
+		},
+		{
+			"match": "(?i:\\b(Asc|Atn|Chr|Int|Cos|Date|Exp|Hex|Int|StrLen|Log|LTrim|RTrim|Trim|Maths|Mid|Minute|Oct|Rnd|Sin|Sqr|StrComp|Tan|Time|Year)\\b)",
+			"name": "support.function.vb.asp"
+		},
+		{
+			"match": "-?\\b((0(x|X)[0-9a-fA-F]*)|(([0-9]+\\.?[0-9]*)|(\\.[0-9]+))((e|E)(\\+|-)?[0-9]+)?)(L|l|UL|ul|u|U|F|f)?\\b",
+			"name": "constant.numeric.asp"
+		},
+		{
+			"captures": {
+				"1": {
+					"name": "entity.name.function.asp"
+				}
+			},
+			"match": "(?i:(\\b[a-zA-Z_x7f-xff][a-zA-Z0-9_x7f-xff]*?\\b)(?=\\(\\)?))",
+			"name": "support.function.asp"
+		},
+		{
+			"match": "(?i:((?<=(\\+|=|-|\\&|\\\\|/|<|>|\\(|,))\\s*\\b([a-zA-Z_x7f-xff][a-zA-Z0-9_x7f-xff]*?)\\b(?!(\\(|\\.))|\\b([a-zA-Z_x7f-xff][a-zA-Z0-9_x7f-xff]*?)\\b(?=\\s*(\\+|=|-|\\&|\\\\|/|<|>|\\(|\\)))))",
+			"name": "variable.other.asp"
+		},
+		{
+			"match": "!|\\$|%|&|\\*|\\-\\-|\\-|\\+\\+|\\+|~|===|==|=|!=|!==|<=|>=|<<=|>>=|>>>=|<>|<|>|!|&&|\\|\\||\\?\\:|\\*=|/=|%=|\\+=|\\-=|&=|\\^=|\\b(in|instanceof|new|delete|typeof|void)\\b",
+			"name": "keyword.operator.js"
 		}
 	],
 	"repository": {
-		"keywords": {
-			"patterns": [{
-				"name": "keyword.control.rtbasic",
-				"match": "\\b(?i)(if|while|for|return|wend|global)\\b"
-			}]
-		},
-		"strings": {
-			"name": "string.quoted.double.rtbasic",
-			"begin": "\"",
-			"end": "\"",
+		"round-brackets": {
+			"begin": "\\(",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.section.round-brackets.begin.asp"
+				}
+			},
+			"end": "\\)",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.section.round-brackets.end.asp"
+				}
+			},
+			"name": "meta.round-brackets",
 			"patterns": [
 				{
-					"name": "constant.character.escape.rtbasic",
-					"match": "\\\\."
+					"include": "source.asp.vb.net"
 				}
 			]
 		}

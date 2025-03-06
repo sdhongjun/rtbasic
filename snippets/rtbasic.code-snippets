@@ -1,10 +1,38 @@
 {
+    "if statement": {
+		"prefix": "If",
+		"body": [
+			"If ${1:True} Then",
+				"\t$0",
+			"End If"
+		],
+		"description": "If Then..."
+	},
+	"if Else statement": {
+		"prefix": "If Else",
+		"body": [
+			"If ${1:True} Then",
+				"\t$0",
+			"Else",
+				"\t",
+			"End If"
+		],
+		"description": "If Else Then..."
+	},
+	"elseif statement": {
+		"prefix": "ElseIf",
+		"body": [
+			"ElseIf ${1:True} Then",
+				"\t$0"
+		],
+		"description": "ElseIf..."
+	},
 	"For Next Loop": {
 		"prefix": "for",
 		"body": [
 			"For ${1:index} As ${2:ObjectType} = ${3:lower} To ${4:Upper}",
 			"\t$0",
-			"Next ${1:index}"
+			"Next"
 		],
 		"description": "For Next Loop"
 	},
@@ -13,28 +41,25 @@
 		"body": [
 			"For i As ${1:Integer} = ${2:Lower} To ${3:Upper} - 1",
 			"\t$0",
-			"Next i"
+			"Next"
 		],
-		"description": "For i...Next i"
+		"description": "For i...Next"
 	},
 	"For j...Next j": {
 		"prefix": "forj",
 		"body": [
 			"For j As ${1:Integer} = ${2:Lower} To ${3:Upper} - 1",
 			"\t$0",
-			"Next j"
+			"Next"
 		],
-		"description": "For j...Next j"
+		"description": "For j...Next"
 	},
 	"Global Sub ...": {
-		"prefix": "ps",
+		"prefix": "gsub",
 		"body": [
-			"Global Sub ${1:ProcedureName}(${2:ParameterList})",
-			"\tTry",
-			"\t\t$0",
-			"\tCatch ex As Exception",
-			"\tEnd Try",
-			"End Sub"
+			"global sub ${1:subroutine_name}()",
+            "\t$0",
+            "end sub"
 		],
 		"description": "Global Sub ..."
 	},
@@ -46,5 +71,17 @@
 			"End While"
 		],
 		"description": "While ... End While"
-	}
+	},
+    "Header": {
+        "prefix": "header",
+        "body": [
+            "$LINE_COMMENT",
+            "$LINE_COMMENT $TM_FILENAME",
+            "$LINE_COMMENT",
+            "$LINE_COMMENT Created by 葛红军 on $CURRENT_YEAR年$CURRENT_MONTH月$CURRENT_DATE日.",
+            "$LINE_COMMENT Copyright © 2025. All rights reserved.",
+            "$LINE_COMMENT\n\n\n$0"
+        ],
+        "description": "Log variable value to console"
+    }
 }
