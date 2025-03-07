@@ -63,7 +63,7 @@
 					"name": "punctuation.definition.parameters.asp"
 				}
 			},
-			"match": "^\\s*((?:global\\s+)?(?i:sub))\\s+([a-zA-Z_]\\w*)\\s*(\\()([^)]*)(\\)).*\\n?",
+			"match": "^\\s*((?i:global\\s+)?(?i:sub))\\s+([a-zA-Z_]\\w*)\\s*(\\()([^)]*)(\\)).*\\n?",
 			"name": "meta.function.asp"
 		},
 		{
@@ -88,7 +88,7 @@
 			]
 		},
 		{
-			"match": "(?i:\\b(If|Then|Else|ElseIf|Else If|End If|While|Wend|For|To|Return|Continue|Until|Loop|Next|Exit For|Exit Sub|IIf)\\b)",
+			"match": "(?i:\\b(If|Then|Else|ElseIf|Else If|End If|While|Wend|For|To|Return|Continue|Until|Loop|Next|Exit For|Exit Sub)\\b)",
 			"name": "keyword.control.asp"
 		},
 		{
@@ -107,7 +107,7 @@
 					"name": "meta.separator.comma.asp"
 				}
 			},
-			"match": "(?i:(dim)\\s*(?:(\\b[a-zA-Z_x7f-xff][a-zA-Z0-9_x7f-xff]*?\\b)\\s*(,?)))",
+			"match": "(?i:(dim|local)\\s*(?:(\\b[a-zA-Z_x7f-xff][a-zA-Z0-9_x7f-xff]*?\\b)\\s*(,?)))",
 			"name": "variable.other.dim.asp"
 		},
 		{
